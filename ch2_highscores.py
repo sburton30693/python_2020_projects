@@ -32,7 +32,7 @@ print(str.format(wall + "{0:^18.18}" + wall, "High Score"))
 print(str.format(wall + "{0:^18.18}" + wall, "=================="))
 
 # print each of the score lines, using string formatting
-format_string = wall + " {0:<8.8} " + seperator + " {1:>5,} " + wall
+format_string = wall + " {:^8.8} " + seperator + " {:>5,} " + wall
 
 print(str.format(format_string, name0, score0))
 print(str.format(format_string, name1, score1))
