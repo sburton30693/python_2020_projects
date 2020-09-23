@@ -1,48 +1,47 @@
-# create and initialize three name variables
-# (name1, name2, name3)
-name1  = "BossLady"
-name2  = "Jerry   "
-name3  = "syrup   "
-name4  = "Orange  "
-name5  = "Juice   "
-name6  = "Pelican "
-name7  = "Lemonade"
-name8  = "child   "
-name9  = "banana  "
-name10 = "apple   "
+# Spencer Burton
 
-# create and initialize three score variables
-# (score1, score2, score3)
-score1  = 1000
-score2  = 999
-score3  = 812
-score4  = 765
-score5  = 600
-score6  = 544
-score7  = 432
-score8  = 431
-score9  = 399
-score10 = 100
+# create and initialize ten name variables
+name0 = "BossLady"
+name1 = "Jerry"
+name2 = "syrup"
+name3 = "Orange"
+name4 = "Juice"
+name5 = "Pelican"
+name6 = "Lemonade"
+name7 = "child"
+name8 = "banana"
+name9 = "apple"
 
-# print a title for the high scores list
-print("|     High Scores    |")
-print("|====================|")
-
-# print each of the three score lines in the pattern "name = score"
+# create and initialize ten score variables
+score0  = 1000
+score1  = 999
+score2  = 812
+score3  = 765
+score4  = 600
+score5  = 544
+score6  = 432
+score7  = 431
+score8  = 399
+score9  = 100
 
 seperator = "-"
-begin_wall = "|"
-end_wall = "   " + begin_wall
+wall = "|"
 
-print(begin_wall, name1 , seperator, str(score1) , end_wall)
-print(begin_wall, name2 , seperator, str(score2) , " " + end_wall)
-print(begin_wall, name3 , seperator, str(score3) , " " + end_wall)
-print(begin_wall, name4 , seperator, str(score4) , " " + end_wall)
-print(begin_wall, name5 , seperator, str(score5) , " " + end_wall)
-print(begin_wall, name6 , seperator, str(score6) , " " + end_wall)
-print(begin_wall, name7 , seperator, str(score7) , " " + end_wall)
-print(begin_wall, name8 , seperator, str(score8) , " " + end_wall)
-print(begin_wall, name9 , seperator, str(score9) , " " + end_wall)
-print(begin_wall, name10, seperator, str(score10), " " + end_wall)
+# print a title for the high scores list
+print(str.format(wall + "{0:^18.18}" + wall, "High Score"))
+print(str.format(wall + "{0:^18.18}" + wall, "=================="))
 
-print("\\____________________/")
+# print each of the score lines, using string formatting
+format_string = wall + " {0:<8.8} " + seperator + " {1:>5,} " + wall
+
+print(str.format(format_string, name0, score0))
+print(str.format(format_string, name1, score1))
+print(str.format(format_string, name2, score2))
+print(str.format(format_string, name3, score3))
+print(str.format(format_string, name4, score4))
+print(str.format(format_string, name5, score5))
+print(str.format(format_string, name6, score6))
+print(str.format(format_string, name7, score7))
+print(str.format(format_string, name8, score8))
+print(str.format(format_string, name9, score9))
+print(str.format("\\{0:^18.18}/", "__________________"))
