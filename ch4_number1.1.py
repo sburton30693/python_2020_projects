@@ -15,10 +15,9 @@ print("I'm thinking of a number between 1 and 10.")
 print("Try to guess it in 3 attempts.\n")
 
 
-# Get user input for guess
+# First Guess
 user_guess = int(input("Guess a number between 1 and 10: "))
 
-# Check guess against the number
 if user_guess == the_number :
     print("Correct!")
     win = True
@@ -31,7 +30,6 @@ else :
 
 
 # Second Guess
-
 if not win :
     user_guess = int(input("Guess a number between 1 and 10: "))
 
@@ -47,7 +45,6 @@ if not win :
 
 
 # Third Guess
-
 if not win :
     user_guess = int(input("Guess a number between 1 and 10: "))
 
