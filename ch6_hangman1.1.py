@@ -148,33 +148,3 @@ else :
     print(DEFINITIONS[index])
 
 input("\nPress enter to exit")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
