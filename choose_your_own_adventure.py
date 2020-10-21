@@ -192,7 +192,7 @@ def ask_page_extra(option1, option2, option3) :
     return response
 
 def intropage() :
-	"""This is the first two pages that create the background of the story"""
+    """This is the first two pages that create the background of the story"""
     print("""
 PROFESSOR BRUCKNER'S THEORY
 The discovery of the Bottomless Crevasse in
@@ -283,9 +283,9 @@ If not, go on to page 3.""")
         
 	page = ask_page(3, 5)
 	if page == 3 :
-    	page3()
+            page3()
 	elif page == 5 :
-    	page5()
+            page5()
           
 def page3() :
     """Pages 3 and 6"""
