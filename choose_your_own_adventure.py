@@ -342,11 +342,11 @@ turn to page 15.
 If you hold your ground and face it,
 turn to page 10.""")
 
- 	page = ask_page(10, 15)
-	if page == 10 :
-    	page10()
-	elif page == 15 :
-    	page15()
+    page = ask_page(10, 15)
+    if page == 10 :
+        page10()
+    elif page == 15 :
+        page15()
           
 def page5() :
 	"""Page 5"""
@@ -369,15 +369,15 @@ If you warn Larsen and Sneed,
 turn to page 13.
 If you just yell, "Please hurry!" turn to page 9.""")
     
-	page = ask_page(9, 13)
-	if page == 9 :
-    	page9()
-	elif page == 13 :
-    	page13()
+    page = ask_page(9, 13)
+    if page == 9 :
+        page9()
+    elif page == 13 :
+        page13()
           
 def page13() :
-	"""Page 13 - Ending"""
-  	print("""
+    """Page 13 - Ending"""
+    print("""
 "Get back from the edge!" you yell. "I didn't
 fall, I was pulled in!"
 For a few moments you hear nothing; then
