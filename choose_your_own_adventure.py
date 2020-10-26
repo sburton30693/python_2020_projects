@@ -9,7 +9,8 @@
 # Book is at https://mudarwan.files.wordpress.com/2010/08/choose-your-own-adventure-018-underground-kingdom-edward-packard.pdf
 # Link to the Google Meet we use is: https://meet.google.com/xot-yrpk-uym
 
-# Variable Declarations ###############################
+
+############################## Variable Declarations ##############################
 
 the_end =  """
                        _____ _            _____          _ 
@@ -173,7 +174,9 @@ page_87_mountain = """
          ,       /            (   %&@ /    / , 
 """
 
-# Functions / Pages ##############################
+
+############################## Functions / Pages ##############################
+
 def titlepage():
      print(title_art)
                                     
@@ -2217,7 +2220,8 @@ And, if you remembered to fill your pockets
 with diamonds before you ran across the field of
 white clay, you're very rich!""", the_end)
     
-# Start of Program ##############################
+
+############################## Start of the Program ##############################
 
 # Show the title and author
 print(title_art)
