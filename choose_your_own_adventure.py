@@ -13,29 +13,30 @@
 ############################## Variable Declarations ##############################
 
 the_end =  """
-                       _____ _            _____          _ 
-                      |_   _| |          |  ___|        | |
-                        | | | |__   ___  | |__ _ __   __| |
-                        | | | '_ \ / _ \ |  __| '_ \ / _` |
-                        | | | | | |  __/ | |__| | | | (_| |
-                        \_/ |_| |_|\___| \____/_| |_|\__,_|
+     _____ _            _____          _ 
+    |_   _| |          |  ___|        | |
+      | | | |__   ___  | |__ _ __   __| |
+      | | | '_ \ / _ \ |  __| '_ \ / _` |
+      | | | | | |  __/ | |__| | | | (_| |
+      \_/ |_| |_|\___| \____/_| |_|\__,_|
 """
 
 # This is the Title art
 title_art = """
-WELCOME TO THE:
- _   _           _             _____                           _   _   ___                 _                 
-| | | |         | |           |  __ \                         | | | | / (_)               | |                
-| | | |_ __   __| | ___ _ __  | |  \/_ __ ___  _   _ _ __   __| | | |/ / _ _ __   __ _  __| | ___  _ __ ___  
-| | | | '_ \ / _` |/ _ \ '__| | | __| '__/ _ \| | | | '_ \ / _` | |    \| | '_ \ / _` |/ _` |/ _ \| '_ ` _ \ 
-| |_| | | | | (_| |  __/ |    | |_\ \ | | (_) | |_| | | | | (_| | | |\  \ | | | | (_| | (_| | (_) | | | | | |
- \___/|_| |_|\__,_|\___|_|     \____/_|  \___/ \__,_|_| |_|\__,_| \_| \_/_|_| |_|\__, |\__,_|\___/|_| |_| |_|
-                                                                                __/ |                      
-                                                                               |___/ 
-   Made By: Edward Packard
-   Coded By: Kaiden DeBry, Spencer Burton, James Hooper, Haley Bice, Jordan Jackson, Elaina Kell 
+ WELCOME TO THE:
+     _   _           _             _____                           _   _   ___                 _                 
+    | | | |         | |           |  __ \                         | | | | / (_)               | |                
+    | | | |_ __   __| | ___ _ __  | |  \/_ __ ___  _   _ _ __   __| | | |/ / _ _ __   __ _  __| | ___  _ __ ___  
+    | | | | '_ \ / _` |/ _ \ '__| | | __| '__/ _ \| | | | '_ \ / _` | |    \| | '_ \ / _` |/ _` |/ _ \| '_ ` _ \ 
+    | |_| | | | | (_| |  __/ |    | |_\ \ | | (_) | |_| | | | | (_| | | |\  \ | | | | (_| | (_| | (_) | | | | | |
+     \___/|_| |_|\__,_|\___|_|     \____/_|  \___/ \__,_|_| |_|\__,_| \_| \_/_|_| |_|\__, |\__,_|\___/|_| |_| |_|
+                                                                                      __/ |                      
+                                                                                     |___/ 
+    Made By: Edward Packard
+    Coded By: Kaiden DeBry, Spencer Burton, James Hooper, Haley Bice, Jordan Jackson, Elaina Kell 
    
-   """
+"""
+
 # This is the map of the underground kingdom
 under_map = """
                                                   
@@ -78,13 +79,12 @@ under_map = """
                                                   *#&%                         
                                                     /*/&#.                     
                                               .,(@                             
-                                                                               
-                                                                               
-                                                            
-    
+                                                                                       
 """
+
 # This is the creature talked about on page 10
 page_10_creature = """
+
                                                                  .   #/ (      
                                                             .. *./&&%&(%#*./.   
                                                           #* .@@@#  # , #(@&/.#(
@@ -110,13 +110,11 @@ page_10_creature = """
      @*.  @/  @,., , (.                                                         
        .  #.%/#//#                                                              
                                                                                 
-
 """
 
 # This is the mountain on page 87
 page_87_mountain = """
-                                                                                
-                                                                                
+                                                                                                                              
                                     ./      #               *                   
                                #%#,(*   #%  #.,  ( .  /*%(  #../       ,.    /  
                        %((#( #           ( ,,.  #   /,/##.  *#%/ *,*%,((@*/%(/ .
@@ -171,34 +169,65 @@ page_87_mountain = """
               (  & . /,                 ,,.   #@@%/#..                          
             ,. * .  *                  &@@&&@%( ...                             
             #  .   ,               *  %@&(*   *                                 
-         ,       /            (   %&@ /    / , 
+         ,       /            (   %&@ /    / ,
+         
 """
 
 
 ############################## Functions / Pages ##############################
 
-def titlepage():
-     print(title_art)
+def is_only_digits(string) :
+    """Checks if the provided string has only numerical digits.""" 
+    result = True
+
+    for character in string :
+        if character not in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9") :
+            result = False
+            break
+
+    return result
                                     
 def ask_page(option1, option2) :
     """Asks the user for a page."""
-    response = None
-    while response not in (option1, option2) :
-    	response = int(input("Which page do you want to go to? "))
+    response = ""
 
-    return response
+    # Just for spacing
+    print()
+    
+    while (response == "") or (int(response) not in (option1, option2)) :
+        response = input(str.format("Which page do you want to go to?({} or {}): ", option1, option2))
+
+        # Check if it is only digits, if not then just loop again
+        if not is_only_digits(response) :
+            response = ""
+
+    # This is here to divide pages
+    print(str.format("\n=============== {} ===============", response))
+    
+    return int(response)
 
 def ask_page_extra(option1, option2, option3) :
     """Asks the user for a page, with 3 options."""
-    response = None
-    while response not in (option1, option2, option3) :
-    	response = int(input("Which page do you want to go to? "))
+    response = ""
 
-    return response
+    # Just for spacing
+    print()
+    
+    while (response == "") or (int(response) not in (option1, option2, option3)) :
+        response = input(str.format("Which page do you want to go to?({}, {}, or {}): ", option1, option2, option3))
+
+        # Check if it is only digits, if not then just loop again
+        if not is_only_digits(response) :
+            response = ""       
+
+    # This is here to divide pages
+    print(str.format("\n=============== {} ===============", response))
+
+    return int(response)
 
 def intropage() :
-    """This is the first two pages that create the background of the story"""
-    print("""
+     """This is the first two pages that create the background of the story"""
+     print("""
 PROFESSOR BRUCKNER'S THEORY
 The discovery of the Bottomless Crevasse in
 Greenland by Dr. Nera Vivaldi supports my
@@ -239,12 +268,12 @@ The Black Sun absorbs heat. If there is an
 underground kingdom, it is the Black Sun that
 keeps its inhabitants from being baked to
 death by the heat within the earth!""")
-    print(under_map)        
+     print(under_map)        
 # The triple quote string actualy does not need to be indented just the print part
 
 def page1() :
-	"""Pages 1 and 2"""
-	print("""
+     """Pages 1 and 2"""
+     print("""
 You are standing on the Toan Glacier in northern Greenland,
 staring down into the black void
 of the crevasse. You shiver as you wonder
@@ -286,15 +315,15 @@ If you try to land on the ledge,
 turn to page 5.
 If not, go on to page 3.""")
         
-	page = ask_page(3, 5)
-	if page == 3 :
-            page3()
-	elif page == 5 :
-            page5()
+     page = ask_page(3, 5)
+     if page == 3 :
+       page3()
+     elif page == 5 :
+       page5()
           
 def page3() :
-    """Pages 3 and 6"""
-    print("""
+     """Pages 3 and 6"""
+     print("""
 Your consciousness slips away as you fall faster
 down, down, down.
 The next thing you know, you're floating in air.
@@ -347,15 +376,15 @@ turn to page 15.
 If you hold your ground and face it,
 turn to page 10.""")
 
-    page = ask_page(10, 15)
-    if page == 10 :
+     page = ask_page(10, 15)
+     if page == 10 :
         page10()
-    elif page == 15 :
+     elif page == 15 :
         page15()
           
 def page5() :
-	"""Page 5"""
-	print("""
+     """Page 5"""
+     print("""
 Your whole body is racked with pain as you
 crash onto the ledge. You're shaken and bruised
 but still alive! A snowbank cushioned your fall.
@@ -374,11 +403,11 @@ If you warn Larsen and Sneed,
 turn to page 13.
 If you just yell, "Please hurry!" turn to page 9.""")
     
-    page = ask_page(9, 13)
-    if page == 9 :
-        page9()
-    elif page == 13 :
-        page13()
+     page = ask_page(9, 13)
+     if page == 9 :
+          page9()
+     elif page == 13 :
+          page13()
           
 def page13() :
     """Page 13 - Ending"""
@@ -444,11 +473,11 @@ grip.
 If you try to make it, turn to page 18.
 If you decide to wait, turn to page 20.""")
   
-	page = ask_page(18, 20)
-	if page == 18 :
-    	page18()
-	elif page == 20 :
-    	page20()
+    page = ask_page(18, 20)
+    if page == 18 :
+        page18()
+    elif page == 20 :
+        page20()
 
 def page10() :
     """Page 10"""
@@ -472,13 +501,13 @@ shield yourself, turn to page 14.
 If you dive to the ground and shield your face
 with your arms, go on to page 11.""")
 
-	page = ask_page_extra(8, 11, 14)
-    if page == 8 ;
-    	page8()
+    page = ask_page_extra(8, 11, 14)
+    if page == 8 :
+        page8()
     elif page == 11 :
-    	page11()
+        page11()
     elif page == 14 :
-    	page14()
+        page14()
         
 def page15() :
     """Page 15 and 12"""
@@ -518,11 +547,11 @@ grip.
 If you try to make it, turn to page 18.
 If you decide to wait, turn to page 20.""")
   
-	page = ask_page(18, 20)
+    page = ask_page(18, 20)
     if page == 18 :
-    	page18()
+        page18()
     elif page == 20 :
-    	page20()
+        page20()
 
 def page8() :
     """Page 8 - Ending"""
@@ -604,14 +633,14 @@ Kingdom, turn to page 19.
 If you concentrate on getting safely back home,
 turn to page 22.""")
   
-	page = ask_page(19, 22)
+    page = ask_page(19, 22)
     if page == 19 :
     	page19()
     elif page == 22 :
     	page22()
     
 def page14() :
-	"""Pages 14 and 10"""
+    """Pages 14 and 10"""
     print("""
 You lunge for the baby bird, hoping that you
 can use it as a shield.
@@ -624,11 +653,11 @@ Instead, you feel that you have been put into a
 trance. Stranger still, you sense that something
 has set time back—that you are being given another chance!""")
     
-	page10() # This one goes to page 10 so we can just do this
+    page10() # This one goes to page 10 so we can just do this
   
 def page18() :
-  	"""Pages 18 and 21"""
-  	print("""
+    """Pages 18 and 21"""
+    print("""
 You inch your way along the edge, keeping
 your body flat against the wall of the crevasse.
 You should be able to make it, as long as you
@@ -665,15 +694,15 @@ your strength, turn to page 32.
 If you force yourself to keep walking,
 turn to page 25.""")
 
-	page = ask_page(25, 32)
+    page = ask_page(25, 32)
     if page == 25 :
     	page25()
     elif page == 32 :
     	page32()
         
 def page19() :
-	"""Pages 19, 40, and 39"""
-	print("""
+    """Pages 19, 40, and 39"""
+    print("""
 You know how you feel: the risks don't matter.
 You want to explore the Underground Kingdom!
 The angel bird seems to understand. Steeply
@@ -728,7 +757,7 @@ turn to page 42.
 If you decide to hide in a cluster-leaf tree,
 turn to page 46.""")
 
-	page = ask_page(42, 46)
+    page = ask_page(42, 46)
     if page == 42 :
     	page42()
     elif page == 46 :
@@ -767,7 +796,7 @@ should stay away from," the pilot says.
 """, the_end )
   	
 def page22() :
-	"""Pages 22 and 23"""
+    """Pages 22 and 23"""
     print("""
 Your strongest desire now is to be home again.
 You cling tightly to the angel bird. As if it knows
@@ -796,7 +825,7 @@ much more there must be in the universe, and
 even on our own planet, than we can ever imagine""",the_end)
     
 def page25() :
-	"""Pages 25, 26, and 27"""
+    """Pages 25, 26, and 27"""
     print("""
 You force yourself to keep walking. If you
 wander too far from the crevasse, a search team
@@ -857,14 +886,14 @@ go on to page 28.
 If you decide it would be too dangerous to go
 with Bruckner, turn to page 30.""")
     
-	page = ask_page(28, 30)
+    page = ask_page(28, 30)
     if page == 28 :
     	page28()
     elif page == 30 :
     	page30()
         
 def page32() :
-	"""Page 32 - Ending"""
+    """Page 32 - Ending"""
     print("""
 You huddle in your parka, but the cruel wind
 penetrates your body. You feel yourself growing
@@ -879,7 +908,7 @@ their lives exploring the Bottomless Crevasse.
 Everyone spoke very highly of you.""",the_end)
 
 def page28() :
-	"""Page 28, 29, 75, and 77"""
+    """Page 28, 29, 75, and 77"""
     print("""
 "Professor Bruckner, count me in!"
 "Good," he says. "This time we'll be far better
@@ -950,14 +979,14 @@ lost friends.
 If you decide to go with him, turn to page 35.
 If you decide not to risk it, turn to page 33.""")
     
-	page = ask_page(33, 35)
+    page = ask_page(33, 35)
     if page == 33 :
     	page33()
     elif page == 35 :
     	page35()
     
 def page30() :
-	"""Page 30 and 24 - Ending"""
+    """Page 30 and 24 - Ending"""
     print("""
 "No, thank you, Professor," you say. "I've seen
 enough. I never want to get near the Bottomless
@@ -1018,7 +1047,7 @@ the ice fields. The moving glacier is rapidly closing
 the crevasse. There won't be another chance""",the_end)
 
 def page35() :
-	"""Page 35 and 37"""
+    """Page 35 and 37"""
     print("""
 You know that your chances of surviving the
 expedition are slim. Even if you safely descend
@@ -1055,7 +1084,7 @@ button, turn to page 89.
 If you try to reason with Dr. Bruckner,
 turn to page 38.""")
     
-	page = ask_page(38, 89)
+    page = ask_page(38, 89)
     if page == 38 :
     	page38()
     elif page == 89 :
@@ -1144,7 +1173,7 @@ wise to run like a frightened animal? Maybe
 things will go better for you if you bravely face the
 inhabitants of this world.""")
 
-  	page = ask_page(42, 46)
+    page = ask_page(42, 46)
     if page == 42 :
     	page42()
     elif page == 46 :
@@ -1152,7 +1181,7 @@ inhabitants of this world.""")
 
   
 def page89() :
-	"""Page 89 - Ending"""
+    """Page 89 - Ending"""
     print("""
 You push the Emergency-Reverse button. Instantly 
 you are pressed to your seat, almost
@@ -1186,7 +1215,7 @@ be frozen solid."
 """,the_end)
 
 def page42() :
-	"""Page 42 and 44"""
+    """Page 42 and 44"""
     print("""
 You step forward to meet the strange procession. 
 The underworld creatures form a circle
@@ -1240,14 +1269,14 @@ If you follow the blue-furred Raka,
 turn to page 48.
 If you refuse, turn to page 50.""")
 
-	page = ask_page(48, 50)
+    page = ask_page(48, 50)
     if page == 48 :
     	page48()
     elif page == 50 :
     	page50()
         
 def page46() :
-	"""Page 46 and 47 - Ending"""
+    """Page 46 and 47 - Ending"""
     print("""
 You hide in the cluster-leaf tree. The strange
 creatures pass by except for one straggler, who
@@ -1271,7 +1300,7 @@ You have only a few seconds to live, so it
 hardly matters.""",the_end)
     
 def page48() :
-	"""Page 48, 49, and 51"""
+    """Page 48, 49, and 51"""
     print("""
 Hoping for the best, you follow the blue-furred
 Raka to the center of the village. As you walk
@@ -1333,14 +1362,14 @@ his warriors, turn to page 52.
 If you tell him that you won't take part in a
 war, turn to page 56.""")
     
-	page = ask_page9(52, 56)
+    page = ask_page9(52, 56)
     if page == 52 :
     	page52()
     elif page == 56 :
     	page56()
         
 def page50() :
-	"""Page 50 and 53"""
+    """Page 50 and 53"""
     print("""
 You shake your head and stand your ground.
 The blue-furred Raka glares at you and strides
@@ -1372,14 +1401,14 @@ break for the other side, turn to page 57.
 If you try to bluff the guards into thinking you
 have permission to use it, turn to page 58.""")
     
-	page = ask_page(57, 58)
+    page = ask_page(57, 58)
     if page == 57 :
     	page57()
     elif page == 58 :
     	page58()
         
 def page52() :
-	"""Page 52, 54, and 55"""
+    """Page 52, 54, and 55"""
     print("""
 "I'll go with your warriors," you answer.
 "Very well," says Alton. "You will stay with
@@ -1445,7 +1474,7 @@ turn to page 62.""")
     	page62()
       
 def page56() :
-	"""Page 56, 63, and 64 - Ending"""
+    """Page 56, 63, and 64 - Ending"""
     print("""
 "I won't have anything to do with your
 brakpa," you say. "I am not an enemy of you or
@@ -1493,7 +1522,7 @@ Underground Kingdom, but your own warm,
 bright, life-giving sun!""", the_end)
     
 def page57() :
-	"""Page 57 and 60 - Ending"""
+    """Page 57 and 60 - Ending"""
     print("""
 You quickly reach the boat, but you can't untie
 the rope! Instantly the Rakas are upon you. Uttering angry cries, they fling their nets over you. One
@@ -1523,7 +1552,7 @@ you have the will.
 Do you?""", the_end)
     
 def page58() :
-	"""Page 58"""
+    """Page 58"""
     print("""
 You think fast. Luckily, you remember the
 command that the blue-furred Raka gave. You
@@ -1547,14 +1576,14 @@ If you continue in to shore, turn to page 66.
 If you start back across the river,
 turn to page 65.""")
     
-	page = ask_page(65, 66)
+    page = ask_page(65, 66)
     if page == 65 :
     	page65()
     elif page == 66 :
     	page66()
         
 def page61() :
-	"""Page 61, 22, and 23 - Ending"""
+    """Page 61, 22, and 23 - Ending"""
     print("""
 In a flash you're over the side and swimming
 for shore. The Rakas yell at you. One of them
@@ -1575,10 +1604,10 @@ dreamed of seeing it, before. It's like some kind of
 angel bird sent to protect you. Without thinking,
 you leap right onto the creature's back.""")
     
-	page22() # Page 22 is already written
+    page22() # Page 22 is already written
     
 def page62() :
-	"""Page62 - Ending"""
+    """Page62 - Ending"""
     print("""
 Swimming to shore looks too risky. You sit
 quietly in the boat, hoping for the best. As the war
@@ -1613,7 +1642,7 @@ any headway.
 You're not a quitter. You'll go down trying""", the_end)
 
 def page66() :
-	"""Page 66, 67, and 68"""
+    """Page 66, 67, and 68"""
     print("""
 Trying to act unafraid, you row straight in to
 shore, hop out of the boat, and step forward to
@@ -1664,7 +1693,7 @@ make such a decision."
     	page100()
         
 def page70() :
-	"""Page 70"""
+    """Page 70"""
     print("""
 "I'll face the Grand Akpar with you."
 "That's a brave choice," says Dr. Vivaldi, "but it
@@ -1701,7 +1730,7 @@ If you refuse, turn to page 104.""")
     	page104()
         
 def page100() :
-	"""Page 100 and 72 - Ending"""
+    """Page 100 and 72 - Ending"""
     print("""
 At the change of tide, Dr. Vivaldi leaves for her
 interview with the Grand Akpar. Only one Raka is
@@ -1722,7 +1751,7 @@ long curled claws. Kota beasts! The last sounds
 you hear are their unearthly shrieks of triumph""", the_end)
     
 def page73() :
-	"""Page 73 and 84 - Ending"""
+    """Page 73 and 84 - Ending"""
     print("""
 You try to think fast. You don't want to be
 responsible for killing the Rakas, but you have to
@@ -1755,7 +1784,7 @@ You cry out for mercy, but you know there will
 be none.""", the_end)
     
 def page104() :
-	"""Page 104, 105, 76, and 78"""
+    """Page 104, 105, 76, and 78"""
     print("""
 "I won't help you fight the Rakas," you tell the
 Grand Akpar. "War is a terrible thing. Your villages will be destroyed and your people will be
@@ -1826,14 +1855,14 @@ Underground Kingdom, turn to page 81.
 If you say that you want to try to return to the
 surface, turn to page 82.""")
     
-	page = ask_page(81, 82)
+    page = ask_page(81, 82)
     if page == 81 :
     	page81()
     elif page == 82 :
     	page82()
 
 def page81() :
-	"""Page 81 and 83"""
+    """Page 81 and 83"""
     print("""
 "This may be the only chance earth people
 have to explore the Underground Kingdom," you
@@ -1874,16 +1903,16 @@ turn to page 88.
 If you decide to explore the Shining Mountains,
 turn to page 36.""")
     
-	page = ask_page_extra(36, 85, 88)
+    page = ask_page_extra(36, 85, 88)
     if page == 36 :
-    	page 36()
+    	page36()
     elif page == 85 :
     	page85()
     elif page == 88 :
     	page88()
         
 def page36() :
-	"""Pages 36, 92, 93, 98, and 69 - Ending"""
+    """Pages 36, 92, 93, 98, and 69 - Ending"""
     print("""
 You and Dr. Vivaldi cross the Great River and
 start your trek to the Shining Mountains. Along
@@ -1969,7 +1998,7 @@ She looks at you with a broad smile. "Right?"
 "Right," you answer.""", the_end)
   
 def page88() :
-	"""Pages 88 and 91"""
+    """Pages 88 and 91"""
     print("""
 Certainly the Hills of Diamonds must be an
 amazing sight And, if you ever do make it back to
@@ -2020,7 +2049,7 @@ turn to page 94.
 If you say you want to turn back,
 turn to page 97.""")
     
-	page = ask_page(94, 97)
+    page = ask_page(94, 97)
     if page == 94 :
     	page94()
     elif page == 97 :
@@ -2091,7 +2120,7 @@ reach the Black Sun. A chance in a million
 maybe, but still a chance . . .""", the_end)
   
 def page94() :
-	"""Pages 94 and 95"""
+    """Pages 94 and 95"""
     print("""
 "Let's get to those diamonds," you cry. And
 you run toward the points of sparkling white light.
@@ -2129,11 +2158,11 @@ If not, turn to page 102.""")
     page = ask_page(101, 102)
     if page == 101 :
     	page101()
-    elif page == 102
-  		page102()
+    elif page == 102 :
+        page102()
       
 def page97() :
-	"""Pages 97 and 103 - Ending"""
+    """Pages 97 and 103 - Ending"""
     print("""
 "I don't believe the Archpods are running from
 nothing," you say. "Let's get out of here!"
@@ -2182,7 +2211,7 @@ have a whole new world to explore!"
 """, the_end)
     
 def page102() :
-	"""Page 102 - Ending"""
+    """Page 102 - Ending"""
     print("""
 "I'm worried we won't make it," you say.
 "Maybe the eruptions will end soon, if we just
@@ -2200,7 +2229,7 @@ bed. And so the end comes easily for you.""", the_end)
 
     
 def page101() :
-	"""Pages 101 and 108 - True Ending"""
+    """Pages 101 and 108 - True Ending"""
     print("""
 "Let's run for it!" you shout.
 Dr. Vivaldi scans the bubbling fields of clay. "I
@@ -2225,10 +2254,15 @@ white clay, you're very rich!""", the_end)
 
 # Show the title and author
 print(title_art)
+
+# Just to help manage the large amount of text
+input("Press enter to continue")
 # Give a little background
 intropage()
+
+input("Press enter to start")
 # Actually start the book
 page1()
 
 # Stop before ending, so if the file is opened people can see the end before it closes
-input("\nPress any key to exit")
+input("\nPress enter to exit")
