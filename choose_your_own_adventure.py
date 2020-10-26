@@ -9,7 +9,8 @@
 # Book is at https://mudarwan.files.wordpress.com/2010/08/choose-your-own-adventure-018-underground-kingdom-edward-packard.pdf
 # Link to the Google Meet we use is: https://meet.google.com/xot-yrpk-uym
 
-#Variable Declorations       #####################################################################################################
+# Variable Declarations ###############################
+
 the_end =  """
                        _____ _            _____          _ 
                       |_   _| |          |  ___|        | |
@@ -18,7 +19,8 @@ the_end =  """
                         | | | | | |  __/ | |__| | | | (_| |
                         \_/ |_| |_|\___| \____/_| |_|\__,_|
 """
-#This is the Title art
+
+# This is the Title art
 title_art = """
 WELCOME TO THE:
  _   _           _             _____                           _   _   ___                 _                 
@@ -33,8 +35,8 @@ WELCOME TO THE:
    Coded By: Kaiden DeBry, Spencer Burton, James Hooper, Haley Bice, Jordan Jackson, Elaina Kell 
    
    """
-#this is the map of the underground kingdom
-undermap = """
+# This is the map of the underground kingdom
+under_map = """
                                                   
                               ..,#@.#%,,&%(/&( /.                              
                               .                  ,                             
@@ -80,8 +82,8 @@ undermap = """
                                                             
     
 """
-#This is the creature talked about on page 10
-page10creature = """
+# This is the creature talked about on page 10
+page_10_creature = """
                                                                  .   #/ (      
                                                             .. *./&&%&(%#*./.   
                                                           #* .@@@#  # , #(@&/.#(
@@ -109,8 +111,9 @@ page10creature = """
                                                                                 
 
 """
-#This is the mountain on page 87
-page87mountain = """
+
+# This is the mountain on page 87
+page_87_mountain = """
                                                                                 
                                                                                 
                                     ./      #               *                   
@@ -170,8 +173,7 @@ page87mountain = """
          ,       /            (   %&@ /    / , 
 """
 
-##################################################################################################################################
-#functions    ####################################################################################################################
+# Functions / Pages ##############################
 def titlepage():
      print(title_art)
                                     
@@ -184,7 +186,7 @@ def ask_page(option1, option2) :
     return response
 
 def ask_page_extra(option1, option2, option3) :
-    """Asks the user for a page."""
+    """Asks the user for a page, with 3 options."""
     response = None
     while response not in (option1, option2, option3) :
     	response = int(input("Which page do you want to go to? "))
@@ -234,9 +236,9 @@ The Black Sun absorbs heat. If there is an
 underground kingdom, it is the Black Sun that
 keeps its inhabitants from being baked to
 death by the heat within the earth!""")
-#This is the map of the underground kingdom
-    print(undermap)        
+    print(under_map)        
 # The triple quote string actualy does not need to be indented just the print part
+
 def page1() :
 	"""Pages 1 and 2"""
 	print("""
@@ -447,7 +449,7 @@ If you decide to wait, turn to page 20.""")
 
 def page10() :
     """Page 10"""
-    print(page10creature)
+    print(page_10_creature)
     print("""
 You stand there and watch as the strange creature 
 walks slowly toward you. Then you see the
@@ -1878,7 +1880,7 @@ turn to page 36.""")
     	page88()
         
 def page36() :
-	"""Page 36, 92, 93, 98, and 69 - Ending"""
+	"""Pages 36, 92, 93, 98, and 69 - Ending"""
     print("""
 You and Dr. Vivaldi cross the Great River and
 start your trek to the Shining Mountains. Along
@@ -2024,7 +2026,7 @@ turn to page 97.""")
 
 def page85() :
     """Page 85, 87, and 106 - Ending"""
-    print page87mountain
+    print(page_87_mountain)
     print("""
 A few tides later you and Dr. Vivaldi set out for
 the Weightless Peaks. With you is a young Archpod named Katu, chosen because she speaks
@@ -2083,7 +2085,7 @@ You've read that a black hole might somehow
 be an entrance to another universe. If only that
 were possible! It's your only chance once you
 reach the Black Sun. A chance in a million
-maybe, but still a chance . . .""",the_end)
+maybe, but still a chance . . .""", the_end)
   
 def page94() :
 	"""Pages 94 and 95"""
@@ -2215,10 +2217,14 @@ And, if you remembered to fill your pockets
 with diamonds before you ran across the field of
 white clay, you're very rich!""", the_end)
     
-#################### Start of Program #########################
+# Start of Program ##############################
 
+# Show the title and author
 print(title_art)
+# Give a little background
 intropage()
+# Actually start the book
 page1()
 
-input("\nPress any key to exit") # Stop before ending
+# Stop before ending, so if the file is opened people can see the end before it closes
+input("\nPress any key to exit")
