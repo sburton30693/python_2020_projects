@@ -7,7 +7,6 @@
 # an ending is reached, then an ending message will print based on that ending.
 # We should state which page's contains each function with the doc commennt ex. """ pages 1 and2 """
 # Book is at https://mudarwan.files.wordpress.com/2010/08/choose-your-own-adventure-018-underground-kingdom-edward-packard.pdf
-# Link to the Google Meet we use is: https://meet.google.com/xot-yrpk-uym
 
 
 ############################## Variable Declarations ##############################
