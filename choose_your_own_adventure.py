@@ -1170,7 +1170,11 @@ You could probably climb a nearby tree and
 hide among the clusters of giant leaves. But is it
 wise to run like a frightened animal? Maybe
 things will go better for you if you bravely face the
-inhabitants of this world.""")
+inhabitants of this world.
+If you decide to face the creatures,
+turn to page 42.
+If you decide to hide in a cluster-leaf tree,
+turn to page 46.""")
 
     page = ask_page(42, 46)
     if page == 42 :
@@ -1361,7 +1365,7 @@ his warriors, turn to page 52.
 If you tell him that you won't take part in a
 war, turn to page 56.""")
     
-    page = ask_page9(52, 56)
+    page = ask_page(52, 56)
     if page == 52 :
     	page52()
     elif page == 56 :
@@ -1683,7 +1687,10 @@ leave you here. I'll go to the Grand Akpar with
 you!"
 Dr. Vivaldi replies, "Think carefully before you
 make such a decision."
-""")
+If you decide to face the Grand Akpar with Dr.
+Vivaldi, turn to page 70.
+If you decide to escape while you still have a
+chance, turn to page 100.""")
 
     page = ask_page(70, 100)
     if page == 70 :
@@ -2248,7 +2255,7 @@ Across the fields of white clay and safely back
 to the land of the Archpods.
 And, if you remembered to fill your pockets
 with diamonds before you ran across the field of
-white clay, you're very rich!""", the_end)
+white clay, you're very rich! Congratulations!""", the_end)
     
 
 ############################## Start of the Program ##############################
