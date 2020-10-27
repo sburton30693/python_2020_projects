@@ -5,7 +5,7 @@
 # Whichever option they chose, the function for that page is run, i.e. page3() or page5()
 # The function will print all text from the page chosen to the next choice and repeat until
 # an ending is reached, then an ending message will print based on that ending.
-# We should state which page's contains each function with the doc commen.t ex. """ pages 1 and2 """
+# We should state which page's contains each function with the doc commennt ex. """ pages 1 and2 """
 # Book is at https://mudarwan.files.wordpress.com/2010/08/choose-your-own-adventure-018-underground-kingdom-edward-packard.pdf
 # Link to the Google Meet we use is: https://meet.google.com/xot-yrpk-uym
 
@@ -83,7 +83,7 @@ under_map = """
 """
 
 # This is the creature talked about on page 10
-page_10_creature = """
+page10_creature = """
 
                                                                  .   #/ (      
                                                             .. *./&&%&(%#*./.   
@@ -113,7 +113,7 @@ page_10_creature = """
 """
 
 # This is the mountain on page 87
-page_87_mountain = """
+page87_mountain = """
                                                                                                                               
                                     ./      #               *                   
                                #%#,(*   #%  #.,  ( .  /*%(  #../       ,.    /  
@@ -481,7 +481,7 @@ If you decide to wait, turn to page 20.""")
 
 def page10() :
     """Page 10"""
-    print(page_10_creature)
+    print(page10_creature)
     print("""
 You stand there and watch as the strange creature 
 walks slowly toward you. Then you see the
@@ -2033,7 +2033,7 @@ field.
 ask Dr. Vivaldi.
 She shakes her head, seemingly as confused as
 you are. "It must be the ghost wolf. What we are
-witnessing may be more interesting than the diamond hills themselves. We may be in the presence of a life force that the Archpods can see but
+witnessing may be more interesting than the diamond hills themselves. We msay be in the presence of a life force that the Archpods can see but
 we can't Or maybe what they see is an illusion,
 and we are right in thinking nothing is there. This
 is something that has always interested me: different realities for different observers."
@@ -2058,7 +2058,7 @@ turn to page 97.""")
 
 def page85() :
     """Page 85, 87, and 106 - Ending"""
-    print(page_87_mountain)
+    print(page87_mountain)
     print("""
 A few tides later you and Dr. Vivaldi set out for
 the Weightless Peaks. With you is a young Archpod named Katu, chosen because she speaks
@@ -2083,7 +2083,9 @@ Vivaldi urges you on. "It will soon be easier," she
 says. And she is proven correct, for as you struggle up the next steep hill, you feel your pack
 growing lighter, and you feel lighter too. Ahead of
 you, Katu is bounding up the higher peaks like a
-mountain gazelle.
+mountain gazelle.""")
+    print(page87_mountain) # This is where page 87 starts
+    print("""
 "Now you can see," says Dr. Vivaldi, "how on
 the Weightless Peaks the higher you go, the
 lighter you'll get Look!" She points to the highest
