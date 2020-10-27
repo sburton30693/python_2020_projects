@@ -505,7 +505,7 @@ with your arms, go on to page 11.""")
         page8()
     elif page == 11 :
         page11()
-    elif page == 14 :
+    else :
         page14()
         
 def page15() :
