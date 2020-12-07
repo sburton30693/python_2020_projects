@@ -1,6 +1,6 @@
 Midterm Questions by Spencer Burton
 Data Types
-What type would be used to store a name
+What type would be used to store a name?
 Integer
 Floating Point
 String
@@ -8,7 +8,7 @@ List
 3
 A string type holds text which is perfect for a name.
 Variable Names
-Which name is not allowed in Python
+Which name is not allowed in Python?
 _lemon
 lemon2
 _l3mon
@@ -16,7 +16,7 @@ le mon
 4
 Spaces are not allowed in variable names.
 Data Types
-Which is not a standard Python data types
+Which is not a standard Python data type?
 Integer
 Boolean
 Random
@@ -24,7 +24,7 @@ String
 3
 Random is a class that you have to import.
 Formatting
-What is the output of the statement: print(str.format("{1} {0}", "Hello", "There"))
+What is the output of the statement: print(str.format("{1} {0}", "Hello", "There"))?
 Hello There
 There Hello
 H
@@ -32,7 +32,7 @@ None of the above
 2
 Since 1 is put in the first format thing and zero in the second, the second parameter is printed first.
 Functions
-Which of the following is a valid function declaration
+Which of the following is a valid function declaration?
 function yeet()
 define yeet() :
 yeet() :
@@ -40,7 +40,7 @@ def yeet() :
 4
 The keyword 'def' is used to define functions and they require parenthesis and a colon after the name.
 Functions
-True or False. Can a function return multilple values
+True or False. Can a function return multilple values?
 True
 False
 
@@ -48,7 +48,7 @@ False
 1
 Multiple values can be returned by putting a comma between them like this return first, second.
 Printing
-What would the following code output print("I have " + 2 + " beans")
+What would the following code output print("I have " + 2 + " beans")?
 I have2beans
 I have 2 beans
 An Error
@@ -56,7 +56,7 @@ I have + 2 + beans
 3
 Types other than string have to be cast with str() or have a comma between them in order to concatenate without causing an error.
 Syntax
-How many spaces is an indent by default in Python
+How many spaces is an indent by default in Python?
 4
 3
 2
@@ -64,7 +64,7 @@ How many spaces is an indent by default in Python
 1
 The Python standard is 4 spaces for an indent.
 Loops
-How long will a while loop, loop for
+How long will a while loop, loop for?
 Forever
 Until its condition is false
 Until the user presses enter
@@ -72,7 +72,7 @@ However long it feels like
 2
 A while loop loops while its condition is true.
 Loops
-What will be the output of a for loop printing numbers in the range(0, 100)
+What will be the output of a for loop printing numbers in the range(0, 100)?
 The numbers 1-100
 The numbers 0-99
 The numbers 0-100
@@ -80,7 +80,7 @@ An Error
 2
 A range goes from the first number up to, but not including, the second number.
 Comments
-How is a comment written
+How is a comment written?
 """comment
 //comment
 #comment
@@ -88,7 +88,7 @@ How is a comment written
 3
 The hash '#' is used right before the text and makes anything after it on the line a comment.
 Lists and Tuples
-Which is a list
+Which is a list?
 ["lemon", "orange"]
 {"lemon", "orange"}
 ("lemon", "orange")
@@ -96,7 +96,7 @@ Which is a list
 1
 Square brackets denote a list.
 Lists and Tuples
-Which is a tuple
+Which is a tuple?
 ["lemon", "orange"]
 {"lemon", "orange"}
 ("lemon", "orange")
@@ -104,7 +104,7 @@ Which is a tuple
 3
 Parenthesis denote a list.
 Lists and Tuples
-What is the main difference between a list and tuple
+What is the main difference between a list and tuple?
 Nothing
 Lists can be changed, but tuples cannot be
 Lists use square brackets, but tuples use parenthesis
@@ -112,7 +112,7 @@ List cannot be changed, but tuples can
 2
 Lists can have new items appended on, but tuples are immutable and cannot be added to.
 Data Types
-What would be a good data type to store a count of people
+What would be a good data type to store a count of people?
 Floating Point
 String 
 Class
@@ -120,7 +120,7 @@ Integer
 4
 Integers are whole numbers and since you can't have part of a person, an integer would be a good choice.
 Random
-How would a random integer between 0 and 5 be generated with the random library
+How would a random integer between 0 and 5 be generated with the random library?
 random.randint(0, 6)
 random.randomint(0, 5)
 random.random(0, 5)
@@ -128,7 +128,7 @@ random.randint(0, 5)
 4
 The randint function generates a random integer in the range that includes the start and end numbers.
 Math
-Which statement would increment a variable named x by one in Python
+Which statement would increment a variable named x by one in Python?
 x = x + 1
 x + 1
 x += 1
@@ -136,7 +136,7 @@ x += 1
 4
 x = x + 1 would store one plus x back into x, effectivly incrementing it, and answer 3 is justs shorthand for answer 1.
 Files
-What function is used to open and return files
+What function is used to open and return files?
 file()
 open()
 find()
@@ -144,7 +144,7 @@ None of the above
 2
 The open function takes a file location and permissions and returns a file object.
 Calculus
-What is the derivative of sec(x) * x^2 + (2/3)x^3 - e^x + 2^x
+What is the derivative of sec(x) * x^2 + (2/3)x^3 - e^x + 2^x?
 0
 cos(x) / 2x * (2/9)x^2 - e * 2 + x
 sec(x) * 2x + sec(x) * tan(x) + 2x^2 - 2^x * ln(2) - e^x
@@ -152,10 +152,10 @@ sin(x)*cos(x) - x^3 + e^(2 + x) - ln2
 3
 I really don't want to explain this.
 Time to get Funky
-Which is the correct answer
-the correct answer
-the correct answer
-the correct answer
-the correct answer
+Choose the correct answer?
+the correct answer?
+the correct answer.
+the correct answer,
+the correct answer!
 1
-It was the first one, I pulled a sneaky one on ya. Unless you got it, then good job.
+It was the same as the question.
