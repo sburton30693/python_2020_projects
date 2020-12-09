@@ -144,18 +144,18 @@ None of the above
 2
 The open function takes a file location and permissions and returns a file object.
 Calculus
-What is the derivative of sec(x) * x^2 + (2/3)x^3 - e^x + 2^x?
+What is the derivative of sec(x) * x^2 + (2\3)x^3 - e^x + 2^x?
 0
-cos(x) / 2x * (2/9)x^2 - e * 2 + x
+cos(x) \ 2x * (2\9)x^2 - e * 2 + x
 sec(x) * 2x + sec(x) * tan(x) + 2x^2 - 2^x * ln(2) - e^x
 sin(x)*cos(x) - x^3 + e^(2 + x) - ln2
 3
 I really don't want to explain this.
 Time to get Funky
-Choose the correct answer?
+Choose the correct answer.
 the correct answer?
 the correct answer.
 the correct answer,
 the correct answer!
-1
+2
 It was the same as the question.
