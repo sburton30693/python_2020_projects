@@ -82,7 +82,7 @@ A range goes from the first number up to, but not including, the second number.
 Comments
 How is a comment written?
 """comment
-//comment
+\\comment
 #comment
 <comment>
 3
@@ -94,7 +94,7 @@ Which is a list?
 ("lemon", "orange")
 <"lemon", "orange">
 1
-Square brackets denote a list.
+Square brackets denote a tuple.
 Lists and Tuples
 Which is a tuple?
 ["lemon", "orange"]
