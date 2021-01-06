@@ -77,31 +77,30 @@ class Deck(Hand):
                     self.shuffle()
 
 
-deck = Deck()
-deck.populate()
-deck.shuffle()
+class PosCard(Card):
+    def __init__(self, rank, suit):
+        super(PosCard, self).__init__(rank, suit)
+        self.face_up = True
 
-player1 = Hand()
-player2 = Hand()
-river = Hand()
+    def flip(self):
+        self.face_up = not self.face_up
 
-players = [player1, player2]
+    def __str__(self):
+        if self.face_up:
+            rep = super(PosCard, self).__str__()
+        else:
+            rep = """+----------+
+|          |
+|  +----+  |
+|  |  --|  |
+|  |--  |  |
+|  +----+  |
+|          |
++----------+"""
 
-for i in range(2):
-    deck.deal(players, 1)
-    deck.deal([river], 1)
+        return rep
 
 
-print(river)
-print(player1)
-input("Player 1 bet")
-print(player2)
-input("Player 2 bet")
-
-for i in range(3):
-    deck.deal([river], 1)
-    print(river)
-    print(player1)
-    input("Player 1 bet")
-    print(player2)
-    input("Player 2 bet")
+if __name__ == "__main__":
+    print("You ran this module directly (and did not 'import' it).")
+    input("\nPress enter to exit.")
