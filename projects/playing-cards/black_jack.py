@@ -45,6 +45,98 @@ class BJHand(pc.Hand):
         super(BJHand, self).__init__()
         self.name = name
 
+    def __str__(self):
+        print("###################################")
+        for card in self.cards:
+            print(card)
+        rep = "###################################"
+        rep += "\n" + self.name
+        rep += "\n" + self.total
+        return rep
+
+    @property
+    def total(self):
+        # If a card in the hand has value of None, then total is None
+        for card in self.cards:
+            if not card.value:
+                return None
+
+        # Add up  card values, treat each Ace as 1
+        t = 0
+        for card in self.cards:
+            t += card.value
+
+        # Determine if hand contains Ace
+        has_ace = False
+        for card in self.cards:
+            if card.value == BJCard.ACE_VALUE
+                has_ace = True
+
+        # If hand contains Ace and total is low enough, treat Ace as 11
+        if has_ace and t <= 11:
+            t += 10 # Only add ten since we already added 1 for Ace
+
+        return t
+
+    def is_busted(self):
+        return self.total > 21
+
+
+class BJPlayer(BJHand):
+
+    def bust(self):
+        print(self.name, "busts.")
+        self.lose()
+
+    def lose(self):
+        print(self.name, "loses.")
+
+    def win(self):
+        print(self.name, "wins.")
+
+    def push(self):
+        print(self.name, "pushes.")
+
+    def is_hitting(self):
+        response = gf.get_yes_no("\n" + self.name + ", do you want to hit? (Y/N): ")
+        return response
+
+
+class BJDealer(BJHand):
+
+    def is_hitting(self):
+        return self.total < 17
+
+    def bust(self):
+        print(self.name, "busts.)
+
+    def flip_first_card(self):
+        self.cards[0].flip()
+
+
+class Game(object):
+
+    def __init__(self, names):
+        self.deck = BJDeck()
+        self.deck.populate()
+        self.deck.shuffle()
+        self.dealer = BJDealer("Dealer Tim")
+        self.players = []
+        
+        for name in names:
+            self.players.append(BJPlayer(name))
+
+    @property
+    def still_playing(self):
+        sp = []
+
+        for player in self.players:
+            if not player.is_busted():
+                sp.append(player)
+
+        return sp
+        
+
 
 # Testing Area
 deck = BJDeck()
