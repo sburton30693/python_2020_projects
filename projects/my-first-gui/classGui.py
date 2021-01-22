@@ -14,11 +14,16 @@ class Application(Frame):
         self.clicks = 0
         self.create_widgets()
 
+    
+    def increment(self):
+        self.clicks += 1
+        self.tclbl = Label(self, text="Total Clicks" + str(self.clicks))
+
     def create_widgets(self):
         self.tclbl = Label(self, text="Total Clicks")
         self.numclicks = Label(self, text=str(self.clicks))
 
-        self.addbtn = Button(self, text="Add 1")
+        self.addbtn = Button(self, text="Add 1", command=self.increment)
         self.subbtn = Button(self, text="Subtract 1")
 
         self.colbtn = Button(self, text="Change BG Color")
