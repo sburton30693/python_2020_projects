@@ -1,6 +1,6 @@
 # Spencer Burton
 # 1/28/2021
-# Pizza Orgering Gui
+# Pizza Ordering Gui
 
 from tkinter import *
 
@@ -13,9 +13,11 @@ class App(Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        # Title
         Label(self, text="Welcome to GUI Pizza Online Order", font="Calibra 13").grid(columnspan=3)
-        Label(self, text="Recipient Credentials:", font="Calibra 11 bold").grid(columnspan=3, pady=5)
+        Label(self, text="Recipient Credentials:", font="Calibra 11").grid(columnspan=3, pady=5)
 
+        # Credentials from the user
         Label(self, text="Name:").grid(column=0, sticky=E)
         self.name = Entry(self, width=24)
         self.name.grid(row=2, column=1, columnspan=2)
@@ -26,7 +28,7 @@ class App(Frame):
         self.phone = Entry(self, width=24)
         self.phone.grid(row=4, column=1, columnspan=2)
 
-        Label(self, text="Pizza Order:", font="Calibra 11 bold").grid(columnspan=3, pady=5)
+        Label(self, text="Pizza Order:", font="Calibra 11").grid(columnspan=3, pady=5)
 
         # Pizza Size
         Label(self, text="Size:", font="Calibra 10 bold").grid(padx=8, sticky=W)
@@ -56,6 +58,7 @@ class App(Frame):
         Radiobutton(self, text="Neopolitan", value="Neopolitan",
                     variable=self.pizza_crust).grid(row=10, column=2, sticky=W)
 
+        # Toppings
         Label(self, text="Toppings:", font="Calibra 10 bold").grid(padx=8, sticky=W)
         self.TOPPINGS = ("Pepperoni", "Jalapeno", "Olive", "Mushroom", "Bell Pepper", "Chicken",
                          "Pineapple", "Extra Cheese", "Onions", "Sausage", "Spinach", "Anchovies")
@@ -64,17 +67,19 @@ class App(Frame):
         for i in range(len(self.TOPPINGS)):
             row = 12 + i // 3
             column = i % 3
-            pad = 8
+            pad = 0
 
-            if column != 0:
-                pad = 0
+            # Only pad check boxes on the left side
+            if column == 0:
+                pad = 8
 
             self.topping_vars.append(BooleanVar())
             Checkbutton(self, text=self.TOPPINGS[i], variable=self.topping_vars[i]
                         ).grid(row=row, column=column, padx=pad, sticky=W)
 
+        # Final submit button and text output box
         Button(self, text="Submit Order", command=self.submit).grid(columnspan=3, pady=6)
-        self.output = Text(self, wrap=WORD, width=38, height=10)
+        self.output = Text(self, wrap=WORD, state=DISABLED, width=38, height=10)
         self.output.grid(columnspan=3, padx=16, pady=8)
 
     def submit(self):
@@ -84,7 +89,10 @@ class App(Frame):
         # Add credentials to order string
         order += str.format("Name    : {}\nAddress : {}\nPhone # : {}\n", self.name.get(), self.addr.get(), self.phone.get())
 
-        # Add Size and Crust
+        # Add a seperator
+        order += "--------------------------------------"
+
+        # Add Size and Crust, and calculate price from them
         order += str.format("Size: {:7} Crust: {}\n", self.pizza_size.get(), self.pizza_crust.get())
 
         if self.pizza_size.get() == "Small":
@@ -97,7 +105,7 @@ class App(Frame):
         if self.pizza_crust.get() != "Classic":
             price += 1.50
 
-        # Add toppings
+        # Add toppings, 50 cents each
         order += "Toppings: "
 
         for i in range(len(self.TOPPINGS)):
@@ -105,13 +113,20 @@ class App(Frame):
                 order += str.format("{}, ", self.TOPPINGS[i])
                 price += 0.50
 
+        # Add another seperator
+        order += "--------------------------------------"
+
         # Calculate Tax and add Price to order string
-        price += price * 0.05
+        price += price * 0.05  # 5% Tax
 
         order += str.format("\nPrice: ${:.2f}", price)
 
-        self.output.delete(1.0, END)
-        self.output.insert(1.0, order)
+        # Enable the text boxes state so it can be changed then disable it so the user can't
+        # change it
+        self.output.config(state=NORMAL)
+        self.output.delete(0.0, END)
+        self.output.insert(0.0, order)
+        self.output.config(state=DISABLED)
 
 
 def main():
