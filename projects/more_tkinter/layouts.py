@@ -8,6 +8,7 @@ from PIL import Image, ImageTk
 WIDTH = 250
 HEIGHT = 750
 
+
 class App(Frame):
 
     def __init__(self, master):
