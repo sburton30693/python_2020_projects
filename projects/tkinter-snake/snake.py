@@ -11,7 +11,7 @@ from PIL import ImageTk, Image
 class Cons:
     BOARD_WIDTH  = 300
     BOARD_HEIGHT = 300
-    DELAY = 100
+    DELAY = 60
     DOT_SIZE = 10
     MAX_RAND_POS = 27
 
@@ -53,7 +53,7 @@ class Board(Canvas):
         self.draw_score()
         self.check_collision()
         
-        if self.in_game():
+        if self.in_game:
             self.check_apple_collision()
             self.move_snake()
             self.after(Cons.DELAY, self.on_timer)
@@ -61,43 +61,93 @@ class Board(Canvas):
             self.game_over()
 
     def check_apple_collision(self):
-        pass
+        """Checks if the head of snake collides with apple"""
+        apple = self.find_withtag("apple")
+        head = self.find_withtag("head")
+        x1, y1, x2, y2 = self.bbox(head)
+        overlap = self.find_overlapping(x1, y1, x2, y2)
+
+        for hit in overlap:
+            if apple[0] == hit:
+                self.score += 1
+                x, y = self.coords(apple)
+                self.create_image(x, y, image=self.body, anchor=NW, tag="body")
+                self.locate_apple()
 
     def game_over(self):
-        pass
+        self.delete(ALL)
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2,
+                         text="Game Over with score {0}".format(self.score), fill="white")
 
     def move_snake(self):
-        pass
+        """Move the Snake"""
+        body = self.find_withtag("body")
+        head = self.find_withtag("head")
+        snake = body + head
+
+        z = 0
+        while z < len(snake) - 1:
+            c1 = self.coords(snake[z])
+            c2 = self.coords(snake[z + 1])
+            self.move(snake[z], c2[0] - c1[0], c2[1] - c1[1])
+            z += 1
+
+        self.move(head, self.move_x, self.move_y)
 
     def check_collision(self):
-        pass
+        """Check for collisions"""
+        body = self.find_withtag("body")
+        head = self.find_withtag("head")
+
+        x1, y1, x2, y2 = self.bbox(head)
+        overlap = self.find_overlapping(x1, y1, x2, y2)
+
+        for part in body:
+            for hit in overlap:
+                if hit == part:
+                    self.in_game = False
+
+        if x1 < 0:
+            self.in_game = False
+        if x1 > Cons.BOARD_WIDTH - Cons.DOT_SIZE:
+            self.in_game = False
+        if y1 < 0:
+            self.in_game = False
+        if y1 > Cons.BOARD_WIDTH - Cons.DOT_SIZE:
+            self.in_game = False
 
     def draw_score(self):
-        pass
+        score = self.find_withtag("score")
+        self.itemconfigure(score, text="Score: {0}".format(self.score))
 
     def on_key_press(self, e):
         """Controls direction variables with cursor keys"""
         key = e.keysym
         
         LEFT_CURSOR_KEY = "Left"
+        RIGHT_CURSOR_KEY = "Right"
+        UP_CURSOR_KEY = "Up"
+        DOWN_CURSOR_KEY = "Down"
+
         if key == LEFT_CURSOR_KEY and self.move_x <= 0:
             self.move_x = -Cons.DOT_SIZE
             self.move_y = 0
-        
-        RIGHT_CURSOR_KEY = "Right"
+            return
+
         if key == RIGHT_CURSOR_KEY and self.move_x >= 0:
             self.move_x = Cons.DOT_SIZE
             self.move_y = 0
+            return
 
-        UP_CURSOR_KEY = "Up"
         if key == UP_CURSOR_KEY and self.move_y <= 0:
             self.move_x = 0
             self.move_y = -Cons.DOT_SIZE
-        
-        DOWN_CURSOR_KEY = "Down"
+            return
+
         if key == DOWN_CURSOR_KEY and self.move_y >= 0:
             self.move_x = 0
             self.move_y = Cons.DOT_SIZE
+            return
 
     def locate_apple(self):
         """Places the apple object on Canvas"""
@@ -108,7 +158,6 @@ class Board(Canvas):
         r = random.randint(0, Cons.MAX_RAND_POS)
         self.apple_y = r * Cons.DOT_SIZE
         self.create_image(self.apple_x, self.apple_y, anchor=NW, image=self.apple, tag="apple")
-
 
     def create_objects(self):
         """Create objects on Canvas"""
@@ -149,5 +198,6 @@ def main():
     snake = Snake(root)
 
     root.mainloop()
+
 
 main()
