@@ -27,52 +27,70 @@ PURPLE = (153, 0, 255)
 LIME = (100, 255, 0)
 
 
-class Player(pygame.sprite.Sprite):
+class Npc(pygame.sprite.Sprite):
     def __init__(self):
-        super(Player, self).__init__()
+        super(Npc, self).__init__()
         self.image = pygame.Surface((25, 25))
         self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
-        self.theta = 330
-        self.speed_num = 1
-        self.speed = (self.speed_num, 0)
+        #self.rect.bottomright = (0, 0)
+        self.theta = 0
+        self.speed_num = 5
+        self.acc = 0
+        self.speed = [1, 1]
+        self.do_circle = False
 
     def update(self):
         #rad = self.theta * math.pi/180
-        #self.rect.y += -math.sin(rad) * 5
-        #self.rect.x += math.cos(rad) * 5
-        #self.theta += 2
+        #self.rect.centery = -math.sin(rad) * 20 + self.rect.centery
+        #self.rect.centerx = math.cos(rad) * 20 + self.rect.centerx
+        #self.theta += 20
         self.rect.x += self.speed[0] * self.speed_num
         self.rect.y += self.speed[1] * self.speed_num
-        self.speed_num += 0.25
 
+        if self.rect.right > WIDTH:
+            self.speed[0] *= -1
+        #    self.rect.right = WIDTH
+        #    self.speed[0] = 0
+        #    self.speed[1] = -1
+            self.image.fill(RED)
+            self.speed_num += self.acc
+        if self.rect.top < 0:
+            self.speed[1] *= -1
+        #    self.rect.top = 0
+        #    self.speed[0] = -1
+        #    self.speed[1] = 0
+            self.image.fill(GREEN)
+            self.speed_num += self.acc
+        if self.rect.left < 0:
+            self.speed[0] *= -1
+        #    self.rect.left = 0
+        #    self.speed[0] = 0
+        #    self.speed[1] = 1
+            self.image.fill(BLUE)
+            self.speed_num += self.acc
+        if self.rect.bottom > HEIGHT:
+            self.speed[1] *= -1
+        #    self.rect.bottom = HEIGHT
+        #    self.speed[0] = 1
+        #    self.speed[1] = 0
+            self.image.fill(PURPLE)
+            self.speed_num += self.acc
 
-        #if self.rect.left > WIDTH:
-        #    self.rect.right = 0
-        #if self.rect.right < 0:
-        #    self.rect.left = WIDTH
-        #if self.rect.top > HEIGHT:
-        #    self.rect.bottom = 0
-        #if self.rect.bottom < 0:
-        #    self.rect.top = HEIGHT
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Player, self).__init__()
+        self.image = pygame.Surface((50, 50))
+        self.image.fill(YELLOW)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH / 2, HEIGHT / 2)
+        self.speed_num = 5
+        self.speed = [0, 0]
 
-        if self.rect.left > WIDTH: # Right side
-            self.rect.top = HEIGHT
-            self.rect.centerx = WIDTH / 2
-            self.speed = (0, -1)
-        if self.rect.right < 0: # Left side
-            self.rect.bottom = 0
-            self.rect.centerx = WIDTH / 2
-            self.speed = (0, 1)
-        if self.rect.top > HEIGHT: # Bottom
-            self.rect.left = WIDTH
-            self.rect.centery = HEIGHT / 2
-            self.speed = (-1, 0)
-        if self.rect.bottom < 0: # Top
-            self.rect.right = 0
-            self.rect.centery = HEIGHT / 2
-            self.speed = (1, 0)
+    def update(self):
+        self.rect.x += self.speed[0] * self.speed_num
+        self.rect.y += self.speed[1] * self.speed_num
 
 
 # Main Function
@@ -92,7 +110,12 @@ def main():
     mobs_group = pygame.sprite.Group()
 
     # Create Game Objects and add to sprite groups
+    npc = Npc()
     player = Player()
+
+    # Add to sprite groups
+    all_sprites.add(npc)
+    mobs_group.add(npc)
     all_sprites.add(player)
     players_group.add(player)
 
@@ -104,6 +127,34 @@ def main():
 
         # Process Input
         for event in pygame.event.get():
+
+            # Basic grid movement
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    player.rect.x -= 50
+                if event.key == pygame.K_RIGHT:
+                    player.rect.x += 50
+                if event.key == pygame.K_UP:
+                    player.rect.y -= 50
+                if event.key == pygame.K_DOWN:
+                    player.rect.y += 50
+
+                # Flow movement
+                #if event.key == pygame.K_LEFT:
+                #    player.speed[0] = -1
+                #if event.key == pygame.K_RIGHT:
+                #    player.speed[0] = 1
+                #if event.key == pygame.K_UP:
+                #    player.speed[1] = -1
+                #if event.key == pygame.K_DOWN:
+                #    player.speed[1] = 1
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    player.speed[0] = 0
+                if event.key == pygame.K_UP or event.key == pygame.K_LEFT:
+                    player.speed[1] = 0
+
             # Check for closing window
             if event.type == pygame.QUIT:
                 running = False
@@ -112,7 +163,7 @@ def main():
         all_sprites.update()
 
         # Render all changes
-        screen.fill(CYAN)
+        screen.fill(CYAN)  # Disable for art
         all_sprites.draw(screen)
         pygame.display.flip()
 
