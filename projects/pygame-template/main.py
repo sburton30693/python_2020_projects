@@ -7,6 +7,11 @@ import random
 import os
 
 
+# Setup folder Assets
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, "imgs")
+snd_folder = os.path.join(game_folder, "snds")
+
 # Constants
 WIDTH = 480
 HEIGHT = 360
