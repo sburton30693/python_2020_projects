@@ -143,12 +143,12 @@ def main():
     pygame.init()
     pygame.mixer.init()
 
-    # Load in game imgs
-    player_img = pygame.image.load(os.path.join(img_folder, "sprites/spaghetti.png")).convert()
-
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption(TITLE)
     clock = pygame.time.Clock()
+
+    # Load in game images
+    player_img = pygame.image.load(os.path.join(img_folder, "sprites/spaghetti.png")).convert()
 
     # Sprite Groups
     all_sprites = pygame.sprite.Group()
