@@ -39,7 +39,7 @@ class Player(pg.sprite.Sprite):
         self.speedx = 0
         self.speed_num = 10
         self.bullet_upd = 0
-        self.req_upd = 5
+        self.req_upd = 10
         self.bullet_size = 5
 
     def update(self):
@@ -72,7 +72,7 @@ class Player(pg.sprite.Sprite):
 
     def shoot(self):
         if self.bullet_upd <= 0:
-            bullet = Bullet(self.rect.centerx, self.rect.top + 1, self.bullet_size)
+            bullet = Bullet(self.rect.centerx, self.rect.top - 1, self.bullet_size)
             bullet_group.add(bullet)
             all_sprites.add(bullet)
             self.bullet_upd = self.req_upd
@@ -106,6 +106,7 @@ class NPC(pg.sprite.Sprite):
         npc = NPC()
         npc_group.add(npc)
         all_sprites.add(npc)
+
 
 # Game Constants #########################################
 WIDTH = 600
@@ -186,6 +187,8 @@ while running:
 
     hits = pg.sprite.groupcollide(npc_group, bullet_group, True, True)
     for hit in hits:
+        player.bullet_size += 0.1
+        player.req_upd -= 0.05
         npc.spawn()
 
     # Draw / Render
