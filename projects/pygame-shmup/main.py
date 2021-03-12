@@ -1,6 +1,10 @@
 # Spencer Burton
 # 3/5/2021
 
+# Attributions ############################################
+# Code by Spencer Burton
+# Art by "kenny.nl" or "www.kenny.nl"
+
 # Imports #################################################
 import pygame as pg
 import random as r
@@ -13,8 +17,10 @@ from os import *
 class Bullet(pg.sprite.Sprite):
     def __init__(self, x, y, size=5):
         super(Bullet, self).__init__()
-        self.image = pg.Surface((size, 20))
-        self.image.fill(BLUE)
+        # self.image = pg.Surface((size, 20))
+        # self.image.fill(BLUE)
+        self.image = pg.transform.scale(bullet_img, (int(size), 20))
+        self.image.set_colorkey(BLACK)     
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
@@ -31,9 +37,13 @@ class Bullet(pg.sprite.Sprite):
 class Player(pg.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.image = pg.Surface((50, 40))
-        self.image.fill(GREEN)
+        # self.image = pg.Surface((50, 40))
+        # self.image.fill(GREEN)
+        self.image = player_img
+        self.image = pg.transform.scale(player_img, (50, 38))
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
+        self.radius = 20
         self.rect.centerx = WIDTH/2
         self.rect.bottom = (HEIGHT - (HEIGHT * 0.1))
         self.speedx = 0
@@ -83,9 +93,14 @@ class Player(pg.sprite.Sprite):
 class NPC(pg.sprite.Sprite):
     def __init__(self):
         super(NPC, self).__init__()
-        self.image = pg.Surface((25, 25))
-        self.image.fill(RED)
+        # self.image = pg.Surface((25, 25))
+        # self.image.fill(RED)
+        self.image = enemy_img
+        self.image = pg.transform.scale(enemy_img, (50, 50))
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
+        self.radius = int(self.rect.width/2 * 0.75)
+        pg.draw.circle(self.image, RED, self.rect.center, self.radius)
         self.rect.centerx = WIDTH/2
         self.rect.top = 0
         self.speed = [r.randint(-5, 5), r.randint(0, 20)]
@@ -128,6 +143,15 @@ LIME = (100, 255, 0)
 
 title = "Shmup"
 
+# Folders
+game_folder = path.dirname(__file__)
+imgs_folder = path.join(game_folder, "imgs")
+scores_folder = path.join(game_folder, "scores")
+snds_folder = path.join(game_folder, "snds")
+player_img_folder = path.join(imgs_folder, "player")
+enemy_img_folder = path.join(imgs_folder, "enemy")
+background_img_folder = path.join(imgs_folder, "backgrounds")
+
 
 # Initialize Pygame #######################################
 pg.init()
@@ -139,7 +163,15 @@ clock = pg.time.Clock()
 
 
 # Load Images #############################################
+background = pg.image.load(path.join(background_img_folder, "galaxy.jpg")).convert()
+background = pg.transform.scale(background, (WIDTH, HEIGHT))
+background_rect = background.get_rect()
 
+player_img = pg.image.load(path.join(player_img_folder, "ship.png")).convert()
+
+enemy_img = pg.image.load(path.join(enemy_img_folder, "meteor.png")).convert()
+
+bullet_img = pg.image.load(path.join(player_img_folder, "laser.png")).convert()
 
 # Create Sprite Groups ####################################
 all_sprites = pg.sprite.Group()
@@ -181,7 +213,7 @@ while running:
     all_sprites.update()
 
     # If NPC hits player
-    hits = pg.sprite.spritecollide(player, npc_group, True)
+    hits = pg.sprite.spritecollide(player, npc_group, True, pg.sprite.collide_circle)
     if hits:
         npc.spawn()
 
@@ -193,6 +225,7 @@ while running:
 
     # Draw / Render
     screen.fill(BLACK)
+    screen.blit(background, background_rect)
     all_sprites.draw(screen)
 
     pg.display.flip()
